@@ -1,0 +1,5 @@
+fastapi
+graphene
+uvicorn
+gunicorn
+psycopg2-binary
