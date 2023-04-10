@@ -1,0 +1,40 @@
+# To set up a GraphQL instance in a project using Docker, this file can be used and modified as needed.
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: gunicorn app:app -w 4 -k unvicorn.workers.UvicornWorker -b 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+    # Postgres database given as default:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: my_password
+      POSTGRES_DB: my_database
+
+  graphql:
+    build: ./graphql
+    ports:
+      - "5000:5000"
+    depends_on:
+      - web
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: my_user
+      DB_PASSWORD: my_password
+      DB_NAME: my_database
+
+networks:
+  default:
+    external:
+      name: nginx_proxy
