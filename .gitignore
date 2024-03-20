@@ -1,7 +1,0 @@
-secrets/  # ignore the secrets directory
-secrets.json  # ignore the secrets.json file
-secrets.yml  # ignore the secrets.yml file
-.env  # ignore the .env file
-
-+    - .git/  # ignore the git directory
-+ ;   - .gitignore  # ignore the gitignore file
