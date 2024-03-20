@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "alphard"
+version = "0.1.0"
+description = "Workflows for MLOps using GitHub Actions."
+authors = ["Michael Nau <m@technicals.ai>"]
+license = "Apache License, v2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.110.0"
+ruff = "^0.3.3"
+mlflow = "^2.11.2"
+qdrant-client = "^1.8.0"
+qdrant-tools = "^0.0.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
