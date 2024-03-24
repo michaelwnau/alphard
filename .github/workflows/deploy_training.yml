@@ -1,0 +1,37 @@
+name: Deploy Training
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+
+      - name: Build and test
+        run: |
+          # Add your build and test commands here
+          poetry run ruff . --fix
+          poetry run pytest tests/
+
+      - name: Deploy to production
+        run: |
+          # Add your deployment commands here
